@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+
+        input {
+            display: block;
+            margin: 10px 0 20px 0;
+            padding: 8px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Login Form</h2>
+    <label for="uname">Username:</label>
+    <input type="text" id="uname" required>
+
+    <label for="pass">Password:</label>
+    <input type="password" id="pass" required>
+
+    <button onclick="check()">Submit</button>
+
+    <script>
+        function check() {
+            let uname = document.getElementById("uname").value.trim();
+            let pass = document.getElementById("pass").value.trim();
+
+            let namePattern = /^[A-Za-z]+$/;
+            let passPattern = /^[A-Za-z].*$/; // Starts with a letter
+
+            // Username validation
+            if (uname === "") {
+                alert("Enter user name");
+                document.getElementById("uname").focus();
+                return false;
+            } else if (!namePattern.test(uname)) {
+                alert("Enter valid name (letters only)");
+                document.getElementById("uname").focus();
+                return false;
+            }
+
+            // Password validation
+            if (pass === "") {
+                alert("Enter password");
+                document.getElementById("pass").focus();
+                return false;
+            } else if (!passPattern.test(pass)) {
+                alert("Password must start with a letter");
+                document.getElementById("pass").focus();
+                return false;
+            } else if (pass.length < 8 || pass.length > 16) {
+                alert("Password must be 8-16 characters long");
+                document.getElementById("pass").focus();
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+        }
+    </script>
+</body>
+
+</html>

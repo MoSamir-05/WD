@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q25</title>
+</head>
+<body>
+    <script>
+
+        function average(arr) {
+        if (arr.length === 0) return 0; 
+        let sum = 0;
+        for (let num of arr) {
+            sum += num;
+        }
+        return sum / arr.length;
+    }
+    
+    console.log("Answer is : ",average([10, 20, 30, 40])); 
+    </script>
+
+</body>
+</html>

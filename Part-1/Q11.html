@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q11</title>
+</head>
+
+<body>
+    <form onsubmit="fun(); return false">
+
+        Enter 1st value<input type="number" id="f1">
+        Enter 2nd value<input type="number" id="f2">
+        <button type="submit">submit</button>
+
+    </form>
+    <script>
+        function fun() {
+
+            let num1 = document.getElementById("f1").value;
+            let num2 = document.getElementById("f2").value;
+
+            if (num1 < num2) {
+                document.write("large number is : " + num2);
+            }
+            else if (num2 < num1) {
+                document.write("large number is : " + num1);
+            }
+            else {
+                document.write("Both number is same pleace enter diffrent number.. :(");
+            }
+        }
+    </script>
+</body>
+
+</html>

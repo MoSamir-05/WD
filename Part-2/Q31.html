@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Operations</title>
+</head>
+<body>
+  <h2>Number Operations</h2>
+
+  Enter Number (x): <input type="number" id="num"><br><br>
+
+  <input type="radio" name="op" value="posNeg"> Check Positive / Negative <br>
+  <input type="radio" name="op" value="oddEven"> Check Odd / Even <br>
+  <input type="radio" name="op" value="prime"> Check Prime or Not <br>
+  <input type="radio" name="op" value="fact"> Factorial <br>
+  <input type="radio" name="op" value="square"> Square <br>
+  <input type="radio" name="op" value="power"> Power (x^y) <br>
+  <input type="radio" name="op" value="sumOdd"> Sum of Odd Numbers (1 to x) <br>
+  <input type="radio" name="op" value="sumEven"> Sum of Even Numbers (1 to x) <br><br>
+
+  Enter y (for power): <input type="number" id="powVal"><br><br>
+
+  <button onclick="calc()">Submit</button>
+
+  <h3>Result: <span id="res"></span></h3>
+
+  <script>
+    function calc() {
+      var x = parseInt(document.getElementById("num").value);
+      var y = parseInt(document.getElementById("powVal").value);
+      var choice = document.querySelector('input[name="op"]:checked');
+
+      if (!choice) {
+        document.getElementById("res").innerText = "Please select an operation!";
+        return;
+      }
+
+      var op = choice.value;
+      var result = "";
+
+      if (op == "posNeg") {
+        if (x >= 0) {
+          result = "Positive";
+        } else {
+          result = "Negative";
+        }
+      }
+
+      else if (op == "oddEven") {
+        if (x % 2 == 0) {
+          result = "Even";
+        } else {
+          result = "Odd";
+        }
+      }
+
+      else if (op == "prime") {
+        var isPrime = true;
+        if (x < 2) {
+          isPrime = false;
+        } else {
+          for (var i = 2; i <= Math.sqrt(x); i++) {
+            if (x % i == 0) {
+              isPrime = false;
+              break;
+            }
+          }
+        }
+        if (isPrime) {
+          result = "Prime";
+        } else {
+          result = "Not Prime";
+        }
+      }
+
+      else if (op == "fact") {
+        var fact = 1;
+        for (var i = 1; i <= x; i++) {
+          fact = fact * i;
+        }
+        result = "Factorial = " + fact;
+      }
+
+      else if (op == "square") {
+        result = "Square = " + (x * x);
+      }
+
+      else if (op == "power") {
+        if (isNaN(y)) {
+          y = 2;
+        }
+        result = "Power = " + Math.pow(x, y);
+      }
+
+      else if (op == "sumOdd") {
+        var sum = 0;
+        for (var i = 1; i <= x; i++) {
+          if (i % 2 != 0) {
+            sum = sum + i;
+          }
+        }
+        result = "Sum of Odd Numbers = " + sum;
+      }
+
+      else if (op == "sumEven") {
+        var sum = 0;
+        for (var i = 1; i <= x; i++) {
+          if (i % 2 == 0) {
+            sum = sum + i;
+          }
+        }
+        result = "Sum of Even Numbers = " + sum;
+      }
+
+      document.getElementById("res").innerText = result;
+    }
+  </script>
+</body>
+</html>

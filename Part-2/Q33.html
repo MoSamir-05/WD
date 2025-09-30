@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare String Length</title>
+</head>
+<body>
+    <h2>Compare Two Strings</h2>
+
+    <label for="str1">Enter first string:</label>
+    <input type="text" id="str1"><br><br>
+
+    <label for="str2">Enter second string:</label>
+    <input type="text" id="str2"><br><br>
+
+    <button onclick="compareStrings()">Compare</button>
+
+    <p id="result"></p>
+
+    <script>
+        function compareStrings() {
+            let s1 = document.getElementById("str1").value;
+            let s2 = document.getElementById("str2").value;
+
+            if(s1.length > s2.length) {
+                document.getElementById("result").innerText = "First string is longer: " + s1;
+            } else if(s2.length > s1.length) {
+                document.getElementById("result").innerText = "Second string is longer: " + s2;
+            } else {
+                document.getElementById("result").innerText = "Both strings are of equal length.";
+            }
+        }
+    </script>
+</body>
+</html>

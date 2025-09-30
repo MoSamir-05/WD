@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q15</title>
+</head>
+<body>
+    <form onsubmit="fun(); return false">
+        Enter value<input type="number" id="f1"><br><br>
+        <button type="submit">submit</button>
+    </form>
+    <script>
+        function fun() {
+            let num1 = document.getElementById("f1").value;
+
+            if (num1 < 18) {
+                document.write("not eligible for voting");
+            }
+            else {
+                document.write("eligible for voting ");
+            }
+        }
+    </script>
+</body>
+</html>

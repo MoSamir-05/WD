@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00796b;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #00796b;
+            box-shadow: 0 0 8px rgba(0, 121, 107, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #00796b;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #004d40;
+            transform: scale(1.03);
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0f2f1;
+            border-left: 5px solid #00796b;
+            border-radius: 8px;
+            text-align: center;
+            color: #004d40;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        @media(max-width: 400px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Mark Sheet</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name">
+
+        <label for="java">Java:</label>
+        <input type="number" id="java" placeholder="Enter marks">
+
+        <label for="os">OS:</label>
+        <input type="number" id="os" placeholder="Enter marks">
+
+        <label for="Python">Python:</label>
+        <input type="number" id="Python" placeholder="Enter marks">
+
+        <label for="web">Web:</label>
+        <input type="number" id="web" placeholder="Enter marks">
+
+        <button onclick="fun()">Submit</button>
+
+        <div id="result">Enter marks and click submit</div>
+    </div>
+
+    <script>
+        function fun() {
+            // Name validation
+            let nameInput = document.getElementById("name");
+            let name = nameInput.value.trim();
+            let namePattern = /^[A-Za-z\s]+$/;
+
+            if (name === "") {
+                alert("Name cannot be empty");
+                nameInput.focus();
+                return;
+            }
+
+            if (!namePattern.test(name)) {
+                alert("Name must contain only letters");
+                nameInput.focus();
+                return;
+            }
+
+            // Marks validation
+            let java = parseInt(document.getElementById("java").value) || 0;
+            let os = parseInt(document.getElementById("os").value) || 0;
+            let Python = parseInt(document.getElementById("Python").value) || 0;
+            let web = parseInt(document.getElementById("web").value) || 0;
+
+            function checkMarks(mark, subjectId, subjectName) {
+                if (mark < 0 || mark > 100) {
+                    alert(subjectName + " marks must be between 0 and 100");
+                    document.getElementById(subjectId).value = "";
+                    document.getElementById(subjectId).focus();
+                    return false;
+                }
+                return true;
+            }
+
+            if (!checkMarks(java, "java", "Java")) return;
+            if (!checkMarks(os, "os", "OS")) return;
+            if (!checkMarks(Python, "Python", "Python")) return;
+            if (!checkMarks(web, "web", "Web")) return;
+
+            // Calculate total and percentage
+            let total = java + os + Python + web;
+            let per = (total / 400) * 100;
+
+            // Display result
+            document.getElementById("result").innerHTML =
+                "Name: " + name + "<br>" +
+                "Total Marks: " + total + "/400<br>" +
+                "Percentage: " + per.toFixed(2) + "%<br>" +   // <-- <br> added here
+                "Java: " + java + "<br>" +
+                "OS: " + os + "<br>" +
+                "Python: " + Python + "<br>" +
+                "Web: " + web + "<br>";
+        }
+    </script>
+</body>
+
+</html>

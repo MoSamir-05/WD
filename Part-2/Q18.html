@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18</title>
+</head>
+<body>
+    <form onsubmit="isEven(num);return false;">
+        Enter number : <input type="number" id="num">
+        <button>click & check</button>
+    </form>
+    <script>
+        function isEven(num){
+            if (num%2!=0){
+                document.write("Number is Even");
+            }
+            else{
+                document.write("Number is Odd");
+            }
+           
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide Event Table Format</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#bt1").click(function () {
+                $("p:visible:first").hide();
+            });
+            $("#bt2").click(function () {
+                $("p:hidden:first").show();
+            });
+            $("#headding").click(function () {
+                let size = parseInt($(this).css("font-size")); // current size
+                size = size + 2; // 2px 
+                $(this).css("font-size", size + "px"); // apply 
+            });
+            $("#input_box").focus(function () {
+                $(this).css("border-color", "#00f");
+            });
+            $("#input_box").blur(function () {
+                $(this).css("background-color", "#f8d7da").css("border-color", "#f00");
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        td {
+            padding: 15px;
+            vertical-align: top;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h4 {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        #headding {
+            padding: 10px 20px;
+            background-color: #ffebcd;
+            border-radius: 8px;
+            cursor: pointer;
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+
+        #headding:hover {
+            background-color: #ffd700;
+        }
+
+        p {
+            background-color: #e0f7fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        p:hover {
+            background-color: #b2ebf2;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        #bt1 {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        #bt1:hover {
+            background-color: #45a049;
+        }
+
+        #bt2 {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        #bt2:hover {
+            background-color: #0b7dda;
+        }
+
+        #input_box {
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: all 0.3s ease;
+            width: 95%;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan="2">
+                <h4>Click to change font-size & color</h4>
+                <div id="headding">Click me!</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Paragraphs</h4>
+                <p>Click me!!</p>
+                <p>Don't click me, I am Mr. Ind</p>
+                <p>Click me too!!</p>
+            </td>
+            <td>
+                <h4>Actions</h4>
+                <button id="bt1">Hide Paragraphs</button>
+                <button id="bt2">Show Paragraphs</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h4>Focus & Blur Event</h4>
+                <input type="text" id="input_box">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

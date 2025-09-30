@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        h4 {
+            margin: 15px 0 8px;
+            color: #444;
+        }
+
+        input, select {
+            padding: 10px;
+            width: 250px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+        }
+
+        input:hover, select:hover {
+            border-color: #666;
+        }
+
+        body {
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>FORM EVENTS</h1>
+    <h4>onfocus() Events</h4>
+    <input type="text" onfocus="alert('onfocus() event called')">
+
+    <h4>onblur() event</h4>
+    <input type="text" onblur="alert('onblur() event called')">
+
+    <h4>onchange() event</h4>
+    <select onchange="alert('onchange() event called')">
+        <option value="mca">MCA</option>
+        <option value="bca">BCA</option>
+        <option value="b.com">B.Com</option>
+        <option value="m.com">M.Com</option>
+    </select>
+
+    <h4>oninput() event</h4>
+    <input type="text" oninput="alert('oninput() event called')">
+
+    <h4>onselect() event</h4>
+    <input type="text" onselect="alert('onselect() event called')">
+</body>
+</html>

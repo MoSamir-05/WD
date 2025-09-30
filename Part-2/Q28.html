@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q28</title>
+</head>
+
+<body>
+    <p id="p1">ISTAR</p>
+    <p id="p2">Computer science department</p>
+    <button onclick="change(); return false">Click to swap</button>
+    <script>
+        function change() {
+            let p1 = document.getElementById("p1");
+            let p2 = document.getElementById("p2");
+
+            let temp = p1.innerText;
+            p1.innerText = p2.innerText;
+            p2.innerText = temp;
+        }
+    </script>
+</body>
+
+</html>

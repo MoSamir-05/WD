@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Vowels</title>
+</head>
+<body>
+    <h2>Check if characters are vowels</h2>
+    <label for="char1">Enter first character:</label>
+    <input type="text" id="char1" maxlength="1">
+    <br><br>
+    <label for="char2">Enter second character:</label>
+    <input type="text" id="char2" maxlength="1">
+    <br><br>
+    <button onclick="checkVowels()">Check</button>
+
+    <p id="result"></p>
+
+    <script>
+        function checkVowels() {
+            // Get the characters
+            let c1 = document.getElementById('char1').value.toLowerCase();
+            let c2 = document.getElementById('char2').value.toLowerCase();
+
+            // Vowels array
+            let vowels = ['a', 'e', 'i', 'o', 'u'];
+
+            // Check each character
+            let res1 = vowels.includes(c1) ? "is a vowel" : "is not a vowel";
+            let res2 = vowels.includes(c2) ? "is a vowel" : "is not a vowel";
+
+            // Display result
+            document.getElementById('result').innerHTML = 
+                "First character '" + c1 + "' " + res1 + "<br>" +
+                "Second character '" + c2 + "' " + res2;
+        }
+    </script>
+</body>
+</html>

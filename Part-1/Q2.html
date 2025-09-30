@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q2</title>
+</head>
+<body>
+
+<form onsubmit="det(); return false;">
+    Name: <input type="text" id="name"><br>
+    Age: <input type="number" id="age"><br>
+    course: <input type="text" id="course"><br>
+    <button type="submit">Submit</button>
+</form>
+
+<h1 id="welcome"></h1>
+
+<script>
+    console.log("Welcome To JavaScript");
+
+    function det() {
+        // let username = document.getElementById("name").value;
+        // document.getElementById("welcome").innerText = "Hello " + username + ", Welcome To MCA";
+        let name=document.getElementById("name").value;
+        let age=document.getElementById("age").value;
+        let course=document.getElementById("course").value;
+        document.write("Name: "+name+"<br>");
+        document.write("Age: "+age+"<br>");
+        document.write("Course: "+course+"<br>");
+    }
+</script>
+
+</body>
+</html>

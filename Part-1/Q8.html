@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q8</title>
+</head>
+<body>
+    <form onsubmit="fun(); return false;">
+        Enter value :<input type="number" id="num1">
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function fun(){
+            const temp=parseInt(document.getElementById("num1").value);
+            const con= (temp-32)*5/9;
+            document.write("convert in  Fahrenheit to Celsius: "+con);
+        }
+    </script>
+</body>
+</html>

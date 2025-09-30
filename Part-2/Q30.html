@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q30</title>
+</head>
+
+<body>
+    <input id="val1" type="text" placeholder="enter value 1">
+    <input type="text" id="val2" placeholder="enter value 2">
+    <input type="text" id="ans" placeholder="Answer"><br><br>
+    <button onclick="add();return false">+</button><button onclick="sub()">-</button><button
+        onclick="mul()">x</button><button onclick="div()">/</button>
+
+
+
+    <script>
+        function getValues() {
+            return [parseInt(document.getElementById("val1").value), parseInt(document.getElementById("val2").value)];
+        }
+        function add() {
+            const [a, b] = getValues();
+            let temp = a + b;
+            document.getElementById("ans").value = temp;
+        }
+        function sub() {
+            const [a, b] = getValues();
+            let temp = a - b;
+            document.getElementById("ans").value = temp;
+        }
+        function mul() {
+            const [a, b] = getValues();
+            let temp = a * b;
+            document.getElementById("ans").value = temp;
+        }
+        function div() {
+            const [a, b] = getValues();
+            let temp = a / b;
+            document.getElementById("ans").value = temp;
+        }
+
+    </script>
+</body>
+
+</html>

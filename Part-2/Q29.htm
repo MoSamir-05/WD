@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            height: 20%;
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <img id="img1" src="img.PNG">
+        <button onclick="change();return false;">click</button>
+    </div>
+    <script>
+        function change(){
+            document.getElementById("img1").src="img2.jpg";
+        }
+    </script>
+</body>
+</html>
