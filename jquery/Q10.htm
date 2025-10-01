@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#bt1").click(function () {
+                $(".p2").fadeIn();
+            })
+            $("#bt2").click(function () {
+                $(".p2").fadeOut();
+            })
+            $("#bt3").click(function () {
+                $(".p3").fadeTo(500,0.5);
+            })
+            $("#bt4").click(function () {
+                $(".p4").fadeToggle();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <button id="bt1">fadeIn</button>
+    <button id="bt2">fadeOut</button>
+    <button id="bt3">fadeTo</button>
+    <button id="bt4">fadeToggle</button>
+
+    
+    <p class="p2">fadeIn & fadeOut</p>
+    <p class="p3">fadeTo</p>
+    <p class="p4">fadeToggle</p>
+</body>
+
+</html>
