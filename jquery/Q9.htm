@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#js").click(function () {
+                $(".js").hide(500);
+            })
+            $("#php").click(function () {
+                $(".php").hide(500);
+            })
+            $("#jQuery").click(function () {
+                $(".jQuery").hide(500);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <button id="js">Js</button>
+    <button id="php">php</button>
+    <button id="jQuery">jQuery</button>
+
+
+    <div class="js">Js</div>
+    <div class="php">php</div>
+    <div class="jQuery">jQuery</div>
+</body>
+
+</html>
