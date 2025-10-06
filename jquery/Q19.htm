@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#ele").click(function(){
+                $("h2").hide();
+            })
+             $("#hide").click(function(){
+                $("#p1").hide();
+            })
+             $("#cl").click(function(){
+                $(".text").hide();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h2>element</h2>
+    <p id="p1">use id</p>
+    <textarea name="" id="" class="text">area of DongXian</textarea>
+    <button id="hide">hide id</button>
+    <button id="cl">hide class</button>
+    <button id="ele">hide element</button>
+</body>
+
+</html>
