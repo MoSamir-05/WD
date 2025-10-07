@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Border Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            background-color: aquamarine;
+            border: 3px solid black;
+        }
+        .no-border {
+            border: none;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#toggleBtn").click(function(){
+                $("#myBox").toggleClass("no-border");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="box" id="myBox"></div>
+    <button id="toggleBtn">Click</button>
+</body>
+</html>
