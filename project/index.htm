@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Output Capture Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+  <style>
+    pre.code-block { background:#f6f8fa; padding:12px; border-radius:6px; overflow:auto; }
+    .preview-card { min-height:120px; }
+    .capture-area { background: #fff; padding:16px; border-radius:8px; }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h2 class="mb-3">S.No, Definition, Code & O/P — Form (Hinglish)</h2>
+    <p class="text-muted">Form bharo, preview dekho aur "Capture O/P as Image" se output ka image save karo.</p>
+
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <form id="mainForm">
+              <div class="mb-3">
+                <label class="form-label">S. No</label>
+                <input type="number" class="form-control" id="sno" value="1" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Definition</label>
+                <textarea class="form-control" id="definition" rows="3" placeholder="Definition likho..."></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Code</label>
+                <textarea class="form-control" id="codeInput" rows="6" placeholder="Code yahan paste karo..."></textarea>
+                <div class="form-text">Code preview ke liye "Render Preview" dabao.</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">O/P Image Upload</label>
+                <input class="form-control" type="file" id="outputImageFile" accept="image/*">
+              </div>
+
+              <div class="d-flex gap-2">
+                <button type="button" id="renderBtn" class="btn btn-primary">Render Preview</button>
+                <button type="button" id="captureBtn" class="btn btn-success">Capture O/P as Image</button>
+                <button type="button" id="downloadPNG" class="btn btn-outline-secondary">Download Preview PNG</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <small class="text-muted">Notes: Output image poore area me fullscreen dikhai degi.</small>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card preview-card">
+          <div class="card-body capture-area" id="captureArea">
+            <h5 class="card-title">Preview</h5>
+            <div class="mb-2"><strong>S.No:</strong> <span id="pvSno">1</span></div>
+            <div class="mb-2"><strong>Definition:</strong>
+              <div id="pvDefinition">(Definition will appear here)</div>
+            </div>
+
+            <div class="mb-2"><strong>Code:</strong>
+              <pre class="code-block"><code id="pvCode" class="language-javascript">// Code preview</code></pre>
+            </div>
+
+            <div class="mb-2"><strong>O/P:</strong>
+              <div id="pvOutputContainer" style="position:relative; width:100%; min-height:250px; background:#f9f9f9; border:1px dashed #ccc; border-radius:8px; overflow:hidden;">
+                <img id="pvOutputImage" src="" alt="output image" class="img-fluid" 
+                     style="display:none; width:100%; height:auto; object-fit:contain;">
+                <div id="pvOutputText" class="d-flex align-items-center justify-content-center text-muted" 
+                     style="height:100%; width:100%; position:absolute; top:0; left:0;">
+                  (No output image uploaded)
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4">
+    <h5>Saved Images</h5>
+    <div id="savedList" class="d-flex gap-2 flex-wrap"></div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    const renderBtn = document.getElementById('renderBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    const downloadPNG = document.getElementById('downloadPNG');
+    const pvSno = document.getElementById('pvSno');
+    const pvDefinition = document.getElementById('pvDefinition');
+    const pvCode = document.getElementById('pvCode');
+    const pvOutputText = document.getElementById('pvOutputText');
+    const pvOutputImage = document.getElementById('pvOutputImage');
+    const outputImageFile = document.getElementById('outputImageFile');
+    const savedList = document.getElementById('savedList');
+
+    function renderPreview(){
+      const sno = document.getElementById('sno').value || '1';
+      const def = document.getElementById('definition').value || '(Definition will appear here)';
+      const code = document.getElementById('codeInput').value || '// Code preview';
+
+      pvSno.textContent = sno;
+      pvDefinition.textContent = def;
+      pvCode.textContent = code;
+      if(window.Prism) Prism.highlightElement(pvCode);
+
+      if(outputImageFile.files && outputImageFile.files[0]){
+        const file = outputImageFile.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e){
+          pvOutputImage.src = e.target.result;
+          pvOutputImage.style.display = 'block';
+          pvOutputText.style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+      } else {
+        pvOutputImage.style.display = 'none';
+        pvOutputText.style.display = 'flex';
+      }
+    }
+
+    renderBtn.addEventListener('click', ()=>{
+      renderPreview();
+    });
+
+    captureBtn.addEventListener('click', ()=>{
+      renderPreview();
+      const area = document.getElementById('captureArea');
+      html2canvas(area, { scale: 2 }).then(canvas =>{
+        canvas.toBlob(function(blob){
+          const time = Date.now();
+          const filename = `output_capture_${time}.png`;
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+
+          const img = document.createElement('img');
+          img.src = URL.createObjectURL(blob);
+          img.style.maxWidth = '160px';
+          img.style.border = '1px solid #ddd';
+          img.style.padding = '4px';
+          img.style.borderRadius = '6px';
+          savedList.prepend(img);
+        }, 'image/png');
+      }).catch(err=>{
+        alert('Capture failed: '+err.message);
+      });
+    });
+
+    downloadPNG.addEventListener('click', ()=>{
+      renderPreview();
+      const area = document.getElementById('captureArea');
+      html2canvas(area, { scale: 2 }).then(canvas =>{
+        const dataUrl = canvas.toDataURL('image/png');
+        const w = window.open('about:blank','_blank');
+        w.document.write(`<img src="${dataUrl}" alt="preview">`);
+      });
+    });
+
+    renderPreview();
+    outputImageFile.addEventListener('change', ()=>{ renderPreview(); });
+  </script>
+</body>
+</html>
