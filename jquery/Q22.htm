@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Color Change</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Select Body Color:</h2>
+    <input type="radio" name="sele" id="red" value="red"> Red
+    <input type="radio" name="sele" id="black" value="black"> Black
+    <input type="radio" name="sele" id="cyan" value="cyan"> Cyan
+    <input type="radio" name="sele" id="tomato" value="tomato"> Tomato
+
+    <script>
+        $(document).ready(function(){
+            $("input[type='radio']").change(function(){
+                let color = $(this).val();
+                $("body").css("background-color", color);
+            });
+        });
+    </script>
+</body>
+</html>
